@@ -8,7 +8,7 @@
 
 * Estudo de Orientação a objetos com kotlin ✔️
 * Estudo de Collections multaveis e não multaveis com kotlin ✔️
-* 
+
 
 ### Projetos 
 
