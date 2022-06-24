@@ -1,0 +1,159 @@
+fun main(){
+    //Introdução as arrays
+    val values = IntArray(5)
+    
+    values[0] = 0
+    values[1] = 1
+    values[2] = 2
+    values[3] = 3
+    values[4] = 4
+
+    for (valor in values){
+        println(valor)
+    }
+    // int array of 
+    println("------------------------------")
+    
+    val valores = intArrayOf(1,3,5,7,8)  
+    valores.forEach{
+        println(it)
+    }
+    
+    // string arrays 
+    
+    val nomes = Array (3) {" "}
+    
+    nomes[0] = "Maria"
+    nomes[1] = "joao"
+    nomes[2] = "jose"
+    
+    for (nome in nomes)
+    {
+        println("-----")
+        println(nome)
+
+    }
+    
+	nomes.sort()
+    nomes.forEach{println(it)}
+    
+    val nomes2 = arrayOf("maria", "jose", "pedro")
+    
+    println("------")
+    println(nomes2[1])
+    nomes2.sort()
+    nomes2.forEach{println(it)}
+    println("------")
+    println("------")
+
+    
+    //Double Arrays
+    val salarios = 	DoubleArray(3)
+    salarios[0] = 1000.00
+    salarios[1] = 2000.00
+    salarios[2] = 500.00
+    salarios.forEach{println(it)}
+	
+    println("---------------------------")
+    salarios.forEachIndexed{Index, salario ->
+    salarios[Index] = salario * 1.1
+    }
+    
+    salarios.forEach{println(it)}
+	 
+    println("--------------------------")
+
+    val salarios2 = doubleArrayOf(1000.000,2000.000,500.000)
+    salarios2.sort()
+    salarios2.forEach{println(it)}
+    
+   //operações
+   
+   println("o maior valor dos salarios é: ${salarios.maxOrNull()}")
+   println("o menor valor dos salarios é: ${salarios.minOrNull()}")
+   println("a media valor dos salarios é: ${salarios.average()}")
+   
+   val filtrado = salarios.filter{it> 600}
+   println(filtrado)
+   println("----------------------")
+   println(salarios.count{it in 600.00..3000.00})
+   println(salarios.find{it == 2200.00})
+   println(salarios.any{it == 2280.00})
+
+   //list of
+	
+	val Pedro = Funcionario("Pedro", 2500.00,"clt")
+    val Felipe = Funcionario("Felipe", 2000.00,"pj")
+    val bruno =  Funcionario("Bruno", 3000.00,"clt")
+
+    val funcionarios = listOf(Pedro, Felipe, bruno)
+    
+    funcionarios.forEach{println(it)}
+    println("--------")
+    println(funcionarios.find{it.nome == "Felipe" })
+    println("--------")
+    funcionarios.groupBy{it.tipo}.forEach{println(it)}
+	println("--------")
+	
+    val funcionarios1 = setOf(Pedro,bruno)
+    val funcionarios2 = setOf(Felipe)
+    
+    val uniao = funcionarios1.union(funcionarios2)
+    
+    uniao.forEach{println(it)}
+    println("-------------------")
+    val funcionarios3 = setOf(Pedro,bruno,Felipe)
+    val subtract = funcionarios3.subtract(funcionarios2)
+    subtract.forEach{println(it)}
+    println("-------------")
+    val intersec = funcionarios3.intersect(funcionarios2)
+    intersec.forEach{println(it)}
+    
+    
+    
+    
+    //map
+    
+    val pair: Pair<String, Double> = Pair("joao", 2000.00)
+    val map1 = mapOf(pair)
+    
+    map1.forEach{(k,v) -> println("chave: $k - valor: $v") }
+    println("---------------------------------------------------")
+    val map2 = mapOf ("Vinicius" to 2500.00,
+                      "maria" to 3500.00)
+    
+    map2.forEach{(k,v) -> println("chave: $k - valor: $v") }
+    
+    
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+data class Funcionario(
+	val nome:String,
+	val salario:Double,
+    val tipo: String
+
+){
+    override fun toString(): String = 
+    """
+    	nome:$nome
+        salario:$salario
+        tipo:$tipo
+
+	""".trimIndent()
+}
+
+
+

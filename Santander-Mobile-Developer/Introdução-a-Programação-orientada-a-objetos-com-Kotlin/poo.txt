@@ -1,0 +1,154 @@
+abstract class Pessoa(val nome:String,
+             val cpf:String)
+
+   
+
+
+
+
+
+
+class Conta(
+val agencia: String , 
+val numero: String ,
+val saldo: Float ) {
+    
+    fun Deposito(valor: Float){
+        
+    }
+    
+    fun Saque(valor:Float){
+        
+    }
+    
+    
+    
+}
+
+data class Banco(val nome:String,
+                val numero:Int){
+    
+}
+
+
+enum class ClienteTipo (val descricao:String){
+    PF("Pessoa Fisica"),
+    PJ("Pessoa Juridica")
+}
+
+
+
+
+abstract class Funcionario(
+ nome:String,
+ cpf:String,
+val salario:Double):Pessoa(nome,cpf) {
+
+    protected abstract fun CalculoAuxilio ():Double
+    
+    override fun toString(): String = """
+    nome: $nome
+    cpf: $cpf
+    salario: $salario
+    Auxilio: ${CalculoAuxilio()}
+    """.trimIndent()
+}
+
+
+
+
+class Analista(nome:String,cpf:String,salario:Double):Funcionario(nome,cpf,salario){
+    override fun CalculoAuxilio() = salario *0.1
+}
+
+
+class Gerente (nome:String,
+               cpf:String,
+               salario:Double,
+              val senha:String):Funcionario(nome = nome,cpf = cpf, salario = salario), logavel{
+ override fun CalculoAuxilio(): Double = salario *0.4 
+ 
+ override fun login():Boolean = "senha123" == senha  
+}
+
+
+
+
+
+class ImprimeRelatorio {
+companion object {
+    fun imprime (Funcionario:Funcionario){
+        println(Funcionario.toString())
+    }
+    
+}
+        }
+
+
+
+
+interface logavel {
+    fun login ():Boolean
+}
+    
+    
+    
+    
+    
+    
+
+class TesteAutenticacao {
+    fun Autentica(logavel:logavel) = println(logavel.login())
+}
+
+
+
+
+
+class Cliente (nome:String
+               ,cpf:String,
+              val senha:String,
+              val ClienteTipo:ClienteTipo):Pessoa(nome,cpf),logavel{
+    override fun login():Boolean ="123456" == senha
+     override fun toString(): String = """
+    nome: $nome
+    cpf: $cpf
+    ClienteTIpo: ${ClienteTipo.descricao}
+    """.trimIndent()
+    
+}
+
+
+fun main(){
+    
+
+      
+    val count = Conta(agencia = "10" , numero = "20", saldo = 4.00f)
+    println(count)
+    
+    val bank = Banco(nome = "santander", numero = 20)
+        println(bank.nome)
+
+   ClienteTipo.values().forEach{elemento -> 
+   println("${elemento.name} - ${elemento.descricao}")}
+   
+      val pf = ClienteTipo.PF
+    println(">> ${pf.name} - ${pf.descricao}")
+
+    val pj = ClienteTipo.PJ
+    println(">> ${pj.name} - ${pj.descricao}")
+    
+    
+    val maria = Gerente(nome = "Maria do carmo", cpf = "38259-28327-3829",salario = 900.00,senha = "senha123")
+	ImprimeRelatorio.imprime(maria)
+
+    TesteAutenticacao().Autentica(maria)
+    
+    
+    
+    val jose = Cliente(nome = "jose", cpf = "123455678", senha = "123456", ClienteTipo = ClienteTipo.PF)
+    println(jose)
+    TesteAutenticacao().Autentica(jose)
+}
+
+   
