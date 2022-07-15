@@ -12,5 +12,5 @@
 
 ### Projetos 
 
-1. [App Matches simulator](#) ❎
+1. [App Soccer News](#) ❎
  
