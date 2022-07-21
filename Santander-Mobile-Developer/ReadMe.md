@@ -12,5 +12,5 @@
 
 ### Projetos 
 
-1. [App Soccer News](#) ❎
+1. [App Soccer News](https://github.com/HanselVinicius/soccer-news) :white_check_mark:
  
